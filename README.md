@@ -1,4 +1,35 @@
-# Starting point
+# mystation - A continually improved Cloud Native Desktop OS. https://github.com/aussielunix/mystation
+
+This is built using the ublue starting point repo.
+
+[![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
+
+## TODO
+
+* add dotfile management - here or inside a toolbox ?
+* tune files/usr/share/ublue-os/firstboot/yafti.yml
+* rewrite this readme
+
+## Runsheet
+
+* skopeo login ghcr.io
+* podman login ghcr.io
+* sudo cp /run/user/1000/containers/auth.json /etc/ostree/auth.json
+* sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/aussielunix/mystation:latest
+* systemctl reboot
+* sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest
+* systemctl reboot
+* podman login ghcr.io
+* just -l
+* just update_aussielunix_ca
+* just mytoolbx
+* just owncloud_toolbx
+* just customize_gnome
+* reboot
+
+---
+
+## Starting point
 
 > **Warning**
 > Startingpoint was recently rewritten, and this version is considered a "1.0" *semi-*stable release.
@@ -46,7 +77,7 @@ To rebase an existing Silverblue/Kinoite installation to the latest build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/startingpoint:latest
+  sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/startingpoint:latest
   ```
 - Reboot to complete the rebase:
   ```
@@ -54,7 +85,7 @@ To rebase an existing Silverblue/Kinoite installation to the latest build:
   ```
 - Then rebase to the signed image, like so:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/startingpoint:latest
+  sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/startingpoint:latest
   ```
 - Reboot again to complete the installation
   ```
@@ -64,7 +95,7 @@ To rebase an existing Silverblue/Kinoite installation to the latest build:
 This repository builds date tags as well, so if you want to rebase to a particular day's build:
 
 ```
-rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/startingpoint:20230403
+sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/startingpoint:20230403
 ```
 
 This repository by default also supports signing.
