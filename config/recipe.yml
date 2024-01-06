@@ -33,7 +33,6 @@ modules:
   - type: bling
     install:
       - justfiles
-      - devpod
   - type: yafti
     custom-flatpaks:
       - KeePassXC: org.keepassxc.KeePassXC
