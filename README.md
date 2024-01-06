@@ -1,6 +1,6 @@
-# mystation - A continually improved Cloud Native Desktop OS. https://github.com/aussielunix/mystation
+# mystation - A continually improved Cloud Native Desktop OS.
 
-This is built using the ublue starting point repo.
+This is built using the ublue [startingpoint](https://github.com/ublue-os/startingpoint) repo.
 
 [![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
 

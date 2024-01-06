@@ -1,3 +1,5 @@
+---
+
 ublue_variants:
   - label: ublue-os/startingpoint
     ks: /kickstart/ublue-os.ks
