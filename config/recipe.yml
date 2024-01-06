@@ -17,14 +17,15 @@ modules:
       - usr: /usr
   - type: rpm-ostree
     install:
+      - devpod
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-just-perfection
       - jetbrains-mono-fonts-all
+      - langpacks-en
+      - mc
       - strace
       - terminator
       - vim-enhanced
-      - mc
-      - langpacks-en
       - yubikey-manager-qt
     remove:
       - firefox # default firefox removed in favor of flatpak
