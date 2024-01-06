@@ -42,6 +42,10 @@ COPY modules /tmp/modules/
 # It is copied from the official container image since it's not available as an RPM.
 COPY --from=docker.io/mikefarah/yq /usr/bin/yq /usr/bin/yq
 
-# Run the build script, then clean up temp files and finalize container build.
-RUN chmod +x /tmp/build.sh && /tmp/build.sh && \
-    rm -rf /tmp/* /var/* && ostree container commit
+# Add the ublue copr repo, Run the build script, then clean up temp files and finalize container build.
+RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-$(rpm -E %fedora)/ublue-os-staging-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_ublue-os_staging.repo && \
+    chmod +x /tmp/build.sh && \
+    /tmp/build.sh && \
+    rm -f /etc/yum.repos.d/_copr_ublue-os_staging.repo && \
+    rm -rf /tmp/* /var/* && \
+    ostree container commit

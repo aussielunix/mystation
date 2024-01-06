@@ -17,6 +17,7 @@ modules:
       - usr: /usr
   - type: rpm-ostree
     install:
+      - devpod
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-just-perfection
       - jetbrains-mono-fonts-all
@@ -33,7 +34,6 @@ modules:
   - type: bling
     install:
       - justfiles
-      - devpod
   - type: yafti
     custom-flatpaks:
       - KeePassXC: org.keepassxc.KeePassXC
