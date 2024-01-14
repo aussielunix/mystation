@@ -18,8 +18,8 @@ mytoolbx:
 owncloud_toolbx:
   #!/usr/bin/env bash
   toolbox create --image ghcr.io/aussielunix/owncloud-toolbx:latest -c owncloud
-  mkdir -p .local/share/systemd/user
-  cd .local/share/systemd/user
+  mkdir -p $HOME/.local/share/systemd/user
+  cd $HOME/.local/share/systemd/user
   podman generate systemd -n owncloud --new --files
   cat << __EOF__ > owncloud-client.service
   [Unit]
