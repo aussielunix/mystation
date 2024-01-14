@@ -60,10 +60,15 @@ customize_gnome:
   gsettings set org.gnome.desktop.interface clock-show-weekday true
   gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
   gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.desktop.interface font-hinting 'slight'
+  gsettings set org.gnome.desktop.interface font-antialiasing 'grayscale'
+  gsettings set org.gnome.desktop.interface monospace-font-name 'Source Code Pro 14'
+  gsettings set org.gnome.desktop.interface font-name 'Cantarell 14'
+  gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 14'
+  gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
   gsettings set org.gnome.desktop.notifications application-children "['gnome-power-panel', 'org-gnome-nautilus']"
-  gsettings set org.gnome.shell enabled-extensions "['appindicatorsupport@rgcjonas.gmail.com']"
-  gsettings set org.gnome.shell favorite-apps ['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.mozilla.firefox.desktop', 'terminator.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.chromium.Chromium.desktop']
-  gsettings set org.gnome.shell disabled-extensions "['background-logo@fedorahosted.org']"
+  gsettings set org.gnome.shell enabled-extensions "['appindicatorsupport@rgcjonas.gmail.com', 'just-perfection-desktop@just-perfection']"
+  gsettings set org.gnome.shell disabled-extensions "['background-logo@fedorahosted.org', 'places-menu@gnome-shell-extensions.gcampax.github.com']"
   gsettings set org.gnome.shell.app-switcher current-workspace-only true
   gsettings set org.gnome.desktop.interface enable-hot-corners false
   gsettings set org.gnome.nautilus.preferences migrated-gtk-settings true
@@ -71,9 +76,22 @@ customize_gnome:
   gsettings set org.gnome.desktop.screensaver primary-color '#000000000000'
   gsettings set org.gnome.desktop.screensaver secondary-color '#000000000000'
   gsettings set org.gnome.desktop.wm.preferences num-workspaces 8
+  gsettings set org.gnome.desktop.wm.preferences titlebar-font 'Cantarell Bold 14'
   gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
   gsettings set org.gnome.desktop.search-providers disable-external true
   gsettings set org.gnome.nautilus.window-state maximized true
   gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.mozilla.firefox.desktop', 'terminator.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.chromium.Chromium.desktop']"
+  gsettings set org.gnome.shell.extensions.just-perfection activities-button false
+  gsettings set org.gnome.shell.extensions.just-perfection keyboard-layout false
+  gsettings set org.gnome.shell.extensions.just-perfection accessibility-menu false
+  gsettings set org.gnome.shell.extensions.just-perfection ripple-box false
+  gsettings set org.gnome.shell.extensions.just-perfection weather false
+  gsettings set org.gnome.shell.extensions.just-perfection world-clock false
+  gsettings set org.gnome.shell.extensions.just-perfection window-demands-attention-focus false
+  gsettings set org.gnome.shell.extensions.just-perfection type-to-search false
+  gsettings set org.gnome.shell.extensions.just-perfection startup-status 0
+  gsettings set org.gnome.shell.extensions.just-perfection workspace-switcher-should-show false
+  gsettings set org.gnome.shell.extensions.just-perfection show-apps-button false
 
