@@ -94,4 +94,11 @@ customize_gnome:
   gsettings set org.gnome.shell.extensions.just-perfection startup-status 0
   gsettings set org.gnome.shell.extensions.just-perfection workspace-switcher-should-show false
   gsettings set org.gnome.shell.extensions.just-perfection show-apps-button false
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0.binding '<Control><Alt>t'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0.command 'terminator -p default -m'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom0.name 'My Toolbox'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom1.binding '<Super>Return'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom1.command 'terminator -p silverblue -m'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings.custom1.name 'Silverblue Terminal'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
 
