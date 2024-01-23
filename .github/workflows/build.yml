@@ -7,7 +7,7 @@
 name: build-ublue
 on: # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
   schedule:
-    - cron: "30 16 * * *"
+    - cron: "30 16 * * 3"
   push:
     branches:
       - live
