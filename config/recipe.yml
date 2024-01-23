@@ -39,6 +39,7 @@ modules:
       - KeePassXC: org.keepassxc.KeePassXC
       - Firefox: org.mozilla.firefox
       - VSCodium: com.vscodium.codium
+      - Discord: com.discordapp.Discord
   - type: script
     scripts:
       - signing.sh
