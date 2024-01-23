@@ -82,7 +82,7 @@ customize_gnome:
   gsettings set org.gnome.nautilus.window-state maximized true
   gsettings set org.gnome.mutter dynamic-workspaces false
   gsettings set org.gnome.mutter edge-tiling false
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.mozilla.firefox.desktop', 'terminator.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.chromium.Chromium.desktop']"
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.mozilla.firefox.desktop', 'terminator.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.chromium.Chromium.desktop', 'com.discordapp.Discord']"
   gsettings set org.gnome.shell.extensions.just-perfection activities-button false
   gsettings set org.gnome.shell.extensions.just-perfection keyboard-layout false
   gsettings set org.gnome.shell.extensions.just-perfection accessibility-menu false
