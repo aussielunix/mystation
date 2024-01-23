@@ -7,8 +7,8 @@ update_aussielunix_ca:
 mytoolbx:
   #!/usr/bin/env bash
   toolbox create --image ghcr.io/aussielunix/mytoolbx:latest -c mytoolbx
-  mkdir -p .local/share/systemd/user
-  cd .local/share/systemd/user
+  mkdir -p $HOME/.local/share/systemd/user
+  cd $HOME/.local/share/systemd/user
   podman generate systemd -n mytoolbx --files
   cd -
   systemctl --user daemon-reload
