@@ -6,27 +6,27 @@ This is built using the ublue [startingpoint](https://github.com/ublue-os/starti
 
 ## TODO
 
-* add dotfile management - here or inside a toolbox ?
 * tune files/usr/share/ublue-os/firstboot/yafti.yml
 * rewrite this readme
 
 ## Runsheet
 
-* skopeo login ghcr.io
-* podman login ghcr.io
-* sudo cp /run/user/1000/containers/auth.json /etc/ostree/auth.json
-* sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/aussielunix/mystation:latest
-* systemctl reboot
-* sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest
-* systemctl reboot
-* podman login ghcr.io
-* just -l
-* just update_aussielunix_ca
-* just mytoolbx
-* just owncloud_toolbx
-* just customize_gnome
-* reboot
+* SET TIME & DATE
+* SET HOSTNAME
+* `ujust -l`
+* `ujust bootstrap`
+* `yadm decrypt`
+* `just update_aussielunix_ca`
+* `just customize_gnome`
+* `just mytoolbx`
+* `just owncloud_toolbx`
+* `nmcli con import type wiregurard file $HOME/.config/wireguard/mgmt.conf`
+* `rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest`
+* `systemctl reboot`
+* Change yadm remote from https to git@.... to allow pushing changes
 
+**Work out firefox not trusting my cacert**
+**Work out pattern for using ownCloud for state**
 ---
 
 ## Starting point
