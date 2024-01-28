@@ -16,17 +16,19 @@ This is built using the ublue [startingpoint](https://github.com/ublue-os/starti
 * `ujust -l`
 * `ujust bootstrap`
 * `yadm decrypt`
+* `yadm remote set-url origin git@github.com:aussielunix/dotfiles.git`
 * `just update_aussielunix_ca`
-* `just customize_gnome`
 * `just mytoolbx`
 * `just owncloud_toolbx`
 * `nmcli con import type wiregurard file $HOME/.config/wireguard/mgmt.conf`
 * `rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest`
+* `just customize_gnome`
 * `systemctl reboot`
-* Change yadm remote from https to git@.... to allow pushing changes
+* log into ownCloud
 
 **Work out firefox not trusting my cacert**
-**Work out pattern for using ownCloud for state**
+- https://bgstack15.wordpress.com/2018/10/04/firefox-trust-system-trusted-certificates/
+
 ---
 
 ## Starting point
