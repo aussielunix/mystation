@@ -30,16 +30,26 @@ modules:
     remove:
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks
-  # https://github.com/ublue-os/bling
-  - type: bling
-    install:
-      - justfiles
-  - type: yafti
-    custom-flatpaks:
-      - KeePassXC: org.keepassxc.KeePassXC
-      - Firefox: org.mozilla.firefox
-      - VSCodium: com.vscodium.codium
-      - Discord: com.discordapp.Discord
+
+  - type: default-flatpaks
+    notify: true   # Send notification after install/uninstall is finished (true/false)
+    system:
+      # If no repo information is specified, Flathub will be used by default
+      repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      repo-name: flathub
+      # repo-title: "Flathub (system-wide)" # Optional; this sets the remote's user-facing name in graphical frontends like GNOME Software
+      install:
+        - KeePassXC: org.keepassxc.KeePassXC
+        - Firefox: org.mozilla.firefox
+        - VSCodium: com.vscodium.codium
+        - Discord: com.discordapp.Discord
+      remove:
+      # - org.gnome.eog
+      #
+    user:
+      repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      repo-name: flathub
+
   - type: script
     scripts:
       - signing.sh
