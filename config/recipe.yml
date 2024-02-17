@@ -41,7 +41,7 @@ modules:
       install:
         - KeePassXC: org.keepassxc.KeePassXC
         - Firefox: org.mozilla.firefox
-        - VSCodium: com.vscodium.codium
+        - VSCode: com.visualstudio.code
         - Discord: com.discordapp.Discord
       remove:
       # - org.gnome.eog
