@@ -25,6 +25,7 @@ This is built using the ublue [startingpoint](https://github.com/ublue-os/starti
 * `just customize_gnome`
 * `systemctl reboot`
 * log into ownCloud
+* enter into mytoolbox and run `brew bundle install`
 
 **Work out firefox not trusting my cacert**
 - https://bgstack15.wordpress.com/2018/10/04/firefox-trust-system-trusted-certificates/
