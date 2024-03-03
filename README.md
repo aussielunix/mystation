@@ -18,6 +18,7 @@ This is built using the [Blue Build](https://blue-build.org/) [template](https:/
 * `nmcli con import type wiregurard file $HOME/.config/wireguard/mgmt.conf`
 * `rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest`
 * `just customize_gnome`
+* `systemctl status --user podman-auto-update.timer`
 * `systemctl reboot`
 * log into ownCloud
 * enter into mytoolbox and run `brew bundle install`
