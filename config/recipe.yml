@@ -43,6 +43,7 @@ modules:
         - Firefox: org.mozilla.firefox
         - VSCode: com.visualstudio.code
         - Discord: com.discordapp.Discord
+        - TigerVNC: com.tigervnc.vncviewer
       remove:
       # - org.gnome.eog
 
