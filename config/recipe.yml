@@ -20,9 +20,10 @@ modules:
 
   - type: rpm-ostree
     repos:
-      # - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
       - https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-%OS_VERSION%/ublue-os-staging-fedora-%OS_VERSION%.repo
+      - https://packages.microsoft.com/yumrepos/vscode/config.repo
     install:
+      - code
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-just-perfection
       - jetbrains-mono-fonts-all
