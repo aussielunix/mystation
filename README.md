@@ -1,8 +1,7 @@
-# mystation - A continually improved Cloud Native Desktop OS.
+# mystation [![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
 
-This is built using the [Blue Build](https://blue-build.org/) [template](https://github.com/blue-build/template) repo.
-
-[![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
+This is my continually improved cloud native (Atomic) Desktop OS.  
+It is built using the fantastic [Blue Build](https://blue-build.org/) [template](https://github.com/blue-build/template) repo.
 
 ## Firstboot Runsheet
 
@@ -26,18 +25,16 @@ This is built using the [Blue Build](https://blue-build.org/) [template](https:/
 **Work out firefox not trusting my cacert**
 - https://bgstack15.wordpress.com/2018/10/04/firefox-trust-system-trusted-certificates/
 
-## Customization
-
-The easiest way to start customizing is by looking at and modifying `config/recipe.yml`. It's documented using comments and should be pretty easy to understand.  
-For more information about customization, see the Blue Build [docs](https://blue-build.org/learn/getting-started/)
-
 ## Installation
 
-To rebase an existing Silverblue/Kinoite installation to the latest build:
+> **Warning**
+> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+
+To rebase an existing atomic Fedora installation to the latest build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/aussielunix/mystation:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/aussielunix/mystation:latest
   ```
 - Reboot to complete the rebase:
   ```
@@ -45,30 +42,23 @@ To rebase an existing Silverblue/Kinoite installation to the latest build:
   ```
 - Then rebase to the signed image, like so:
   ```
-  sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest
   ```
 - Reboot again to complete the installation
   ```
   systemctl reboot
   ```
 
-This repository builds date tags as well, so if you want to rebase to a particular day's build:
-
-```
-sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:39-20230403
-```
-
-This repository by default also supports signing.
-
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major Fedora version.
 
 ## ISO
 
-This template includes a simple Github Action to build and release an ISO of your image. 
+If built on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
 
-To run the action, simply edit the `boot_menu.yml` by changing all the references to startingpoint to your repository. This should trigger the action automatically.
+## Verification
 
-The Action uses [isogenerator](https://github.com/ublue-os/isogenerator) and works in a similar manner to the official Universal Blue ISO. If you have any issues, you should first check [the documentation page on installation](https://universal-blue.org/installation/). The ISO is a netinstaller and should always pull the latest version of your image.
+These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
-Note that this release-iso action is not a replacement for a full-blown release automation like [release-please](https://github.com/googleapis/release-please).
-
+```bash
+cosign verify --key cosign.pub ghcr.io/aussielunix/mystation
+```
