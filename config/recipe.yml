@@ -21,8 +21,6 @@ modules:
       - https://packages.microsoft.com/yumrepos/vscode/config.repo
     install:
       - code
-      - gnome-shell-extension-appindicator
-      - gnome-shell-extension-just-perfection
       - jetbrains-mono-fonts-all
       - langpacks-en
       - mc
@@ -45,6 +43,11 @@ modules:
         - TigerVNC: com.tigervnc.vncviewer
       remove:
       # - org.gnome.eog
+  - type: gnome-extensions
+    install:
+      - space-bar@luchrioh
+      - just-perfection-desktop@just-perfection
+      - appindicatorsupport@rgcjonas.gmail.com
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
