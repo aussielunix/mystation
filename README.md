@@ -5,17 +5,17 @@ It is built using the fantastic [Blue Build](https://blue-build.org/) [template]
 
 ## Firstboot Runsheet
 
-* SET TIME & DATE
-* SET HOSTNAME
+* Check TIME & DATE
+* Check HOSTNAME is a FQDN
 * `ujust -l`
 * `ujust bootstrap`
 * `yadm decrypt`
 * `yadm remote set-url origin git@github.com:aussielunix/dotfiles.git`
 * `just update_aussielunix_ca`
 * `just mytoolbx`
-* `just owncloud_toolbx`
+* `just owncloud_distrobox`
 * `nmcli con import type wiregurard file $HOME/.config/wireguard/mgmt.conf`
-* `rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest`
+* `rpm-ostree rebase ostree-image-signed:docker://ghcr.io/aussielunix/mystation:latest` # not needed for offline installs
 * `just customize_gnome`
 * `systemctl enable --now --user podman-auto-update.timer`
 * `systemctl reboot`
