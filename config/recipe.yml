@@ -33,16 +33,18 @@ modules:
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
+    notify: true
     system:
+      repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      repo-name: flathub
+      repo-title: "Flathub (system-wide)"
       install:
-        - KeePassXC: org.keepassxc.KeePassXC
-        - Firefox: org.mozilla.firefox
-        - VSCode: com.visualstudio.code
-        - Discord: com.discordapp.Discord
-        - TigerVNC: com.tigervnc.vncviewer
-      remove:
-      # - org.gnome.eog
+        - org.keepassxc.KeePassXC
+        - org.mozilla.firefox
+        - com.visualstudio.code
+        - com.discordapp.Discord
+        - com.tigervnc.vncviewer
+      remove: []
   - type: gnome-extensions
     install:
       - space-barluchrioh.v25
