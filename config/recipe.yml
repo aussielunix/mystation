@@ -21,6 +21,7 @@ modules:
       - https://packages.microsoft.com/yumrepos/vscode/config.repo
     install:
       - code
+      - devpod
       - jetbrains-mono-fonts-all
       - langpacks-en
       - mc

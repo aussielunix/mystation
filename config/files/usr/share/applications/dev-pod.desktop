@@ -1,8 +1,0 @@
-[Desktop Entry]
-Categories=Development;
-Comment=Spin up dev environments in any infra
-Exec=dev-pod
-Icon=dev-pod
-Name=DevPod
-Terminal=false
-Type=Application
