@@ -42,9 +42,8 @@ modules:
       install:
         - org.keepassxc.KeePassXC
         - org.mozilla.firefox
-        - com.visualstudio.code
         - com.discordapp.Discord
-        - com.tigervnc.vncviewer
+        - org.tigervnc.vncviewer
       remove: []
   - type: gnome-extensions
     install:
