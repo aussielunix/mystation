@@ -53,7 +53,16 @@ The `latest` tag will automatically point to the latest build. That build will s
 
 ## ISO
 
-If built on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+Some blue-build [docs](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso) about generating an offline ISO of your latest published blue-build built image.
+
+TL;DR - run the following:
+
+```bash
+sudo podman run --rm --privileged --volume ./iso-output:/build-container-installer/build --security-opt label=disable --pull=newer ghcr.io/jasonn3/build-container-installer:latest --env IMAGE_REPO=ghcr.io/aussielunix --env IMAGE_NAME=mystation --env IMAGE_TAG=40 --env VARIANT=Server --env VERSION=40
+```
+See the tools [README](https://github.com/JasonN3/build-container-installer/tree/main?tab=readme-ov-file#customizing) for possible build options.
+
+**Note:** These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
 
 ## Verification
 
