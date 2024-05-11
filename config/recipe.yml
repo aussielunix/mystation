@@ -53,5 +53,5 @@ modules:
       - appindicatorsupportrgcjonas.gmail.com.v58
   - type: script
     scripts:
-      - scripts/disablecups.sh
+      - disablecups.sh
   - type: signing
