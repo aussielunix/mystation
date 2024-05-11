@@ -50,5 +50,7 @@ modules:
       - space-barluchrioh.v25
       - just-perfection-desktopjust-perfection.v28
       - appindicatorsupportrgcjonas.gmail.com.v58
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: script
+    scripts:
+      - scripts/disablecups.sh
+  - type: signing
