@@ -20,6 +20,7 @@ modules:
       - https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-%OS_VERSION%/ublue-os-staging-fedora-%OS_VERSION%.repo
       - https://packages.microsoft.com/yumrepos/vscode/config.repo
     install:
+      - bootc
       - code
       - devpod
       - jetbrains-mono-fonts-all
