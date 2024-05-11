@@ -23,13 +23,29 @@ modules:
       - bootc
       - code
       - devpod
+      - iotop
       - jetbrains-mono-fonts-all
       - langpacks-en
+      - libvirt
       - mc
+      - podman-compose
+      - podmansh
+      - qemu-char-spice
+      - qemu-device-display-virtio-gpu
+			- qemu-device-display-virtio-vga
+			- qemu-device-usb-redirect
+			- qemu-img
+			- qemu-system-x86-core
+			- qemu-user-binfmt
+			- qemu-user-static
+			- qemu
       - strace
       - terminator
       - vim-enhanced
+      - virt-manager
+      - virt-viewer
       - webkit2gtk4.0
+      - wl-clipboard
       - yubikey-manager-qt
     remove:
       - firefox # default firefox removed in favor of flatpak
