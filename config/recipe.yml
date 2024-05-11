@@ -32,13 +32,13 @@ modules:
       - podmansh
       - qemu-char-spice
       - qemu-device-display-virtio-gpu
-			- qemu-device-display-virtio-vga
-			- qemu-device-usb-redirect
-			- qemu-img
-			- qemu-system-x86-core
-			- qemu-user-binfmt
-			- qemu-user-static
-			- qemu
+      - qemu-device-display-virtio-vga
+      - qemu-device-usb-redirect
+      - qemu-img
+      - qemu-system-x86-core
+      - qemu-user-binfmt
+      - qemu-user-static
+      - qemu
       - strace
       - terminator
       - vim-enhanced
