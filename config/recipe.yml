@@ -28,6 +28,7 @@ modules:
       - langpacks-en
       - libvirt
       - mc
+      - nmap
       - podman-compose
       - podmansh
       - qemu-char-spice
