@@ -1,7 +1,0 @@
----
-
-ublue_variants:
-  - label: aussielunix/mystation
-    ks: /kickstart/ublue-os.ks
-    flavors:
-      - label: mystation
