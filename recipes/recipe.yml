@@ -21,6 +21,7 @@ modules:
       - https://packages.microsoft.com/yumrepos/vscode/config.repo
     install:
       - bootc
+      - cloud-utils-cloud-localds
       - code
       - devpod
       - iotop
