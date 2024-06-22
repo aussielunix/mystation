@@ -61,17 +61,21 @@ modules:
       repo-name: flathub
       repo-title: "Flathub (system-wide)"
       install:
+        - com.discordapp.Discord
         - org.keepassxc.KeePassXC
         - org.mozilla.firefox
-        - com.discordapp.Discord
         - org.tigervnc.vncviewer
+        - org.videolan.VLC
       remove: []
   - type: gnome-extensions
     install:
       - space-barluchrioh.v25
       - just-perfection-desktopjust-perfection.v28
       - appindicatorsupportrgcjonas.gmail.com.v58
-  - type: script
-    scripts:
-      - disablecups.sh
+  - type: systemd
+    system:
+      disabled:
+        - cups
+      masked:
+        - cups
   - type: signing
