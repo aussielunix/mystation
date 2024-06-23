@@ -79,4 +79,5 @@ modules:
         - ModemManager
       masked:
         - cups
+        - ModemManager
   - type: signing
