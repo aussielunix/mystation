@@ -76,6 +76,7 @@ modules:
     system:
       disabled:
         - cups
+        - ModemManager
       masked:
         - cups
   - type: signing
