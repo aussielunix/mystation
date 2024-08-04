@@ -14,8 +14,9 @@ image-version: 40 # latest is also supported if you want new updates ASAP
 modules:
   - type: files
     files:
-      - source: usr
-        destination: /usr
+      - source: system
+        destination: /
+
   - type: rpm-ostree
     repos:
       - https://copr.fedorainfracloud.org/coprs/ublue-os/staging/repo/fedora-%OS_VERSION%/ublue-os-staging-fedora-%OS_VERSION%.repo
@@ -55,6 +56,7 @@ modules:
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
       - passim
+
   - type: default-flatpaks
     notify: true
     system:
@@ -68,11 +70,13 @@ modules:
         - org.tigervnc.vncviewer
         - org.videolan.VLC
       remove: []
+
   - type: gnome-extensions
     install:
       - space-barluchrioh.v25
       - just-perfection-desktopjust-perfection.v28
       - appindicatorsupportrgcjonas.gmail.com.v58
+
   - type: systemd
     system:
       disabled:
@@ -81,4 +85,5 @@ modules:
       masked:
         - cups
         - ModemManager
+
   - type: signing
