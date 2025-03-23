@@ -1,0 +1,6 @@
+[customizations.installer.kickstart]
+contents = """
+%post
+bootc switch --mutate-in-place --transport registry ghcr.io/aussielunix/mystation:latest
+%end
+"""

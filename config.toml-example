@@ -1,0 +1,5 @@
+[[customizations.user]]
+name = "lunix"
+password = "iamtoolazytothinkofapassword"
+key = "ssh-rsa AAAAB3NzaCxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxZQ== Mick Pollard <mick@example.com>"
+groups = ["wheel"]

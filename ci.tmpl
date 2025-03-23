@@ -1,0 +1,21 @@
+#cloud-config
+hostname: pajua
+fqdn: pajuna.hl.valueline.io
+manage_etc_hosts: true
+# only cert auth via ssh (console access can still login)
+ssh_pwauth: true
+
+# Run apt or yum upgrade
+package_upgrade: false
+
+growpart:
+  mode: auto
+  devices: ['/']
+
+# written to /var/log/cloud-init-output.log
+final_message: |
+  cloud-init has finished
+  version: $version
+  timestamp: $timestamp
+  datasource: $datasource
+  uptime: $uptime
