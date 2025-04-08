@@ -42,7 +42,7 @@ build-iso:
     --local ghcr.io/aussielunix/mystation:latest
 
 # create new libvirt template locally
-lo_create_template name image_ver:
+create_template name image_ver:
   #!/usr/bin/env bash
   set -euo pipefail
   IMGSIZE=$(qemu-img info --output json .osbuild/qcow2/disk.qcow2 | jq -r .[\"virtual-size\"])
@@ -53,7 +53,7 @@ lo_create_template name image_ver:
   virsh vol-list --pool default | grep {{name}}
 
 # create new VM locally
-lo_newvm name template:
+newvm name template:
   #!/usr/bin/env bash
   set -euo pipefail
   #clone template disk
@@ -73,7 +73,7 @@ lo_newvm name template:
   virt-install --cpu host-passthrough --name {{name}} --vcpus 2 --memory 4096 --disk vol=default/{{name}}.seed.iso,device=cdrom --disk vol=default/{{name}},device=disk,size=20,bus=virtio,sparse=false --os-variant fedora40 --virt-type kvm --graphics spice --network network=default,model=virtio --autoconsole text --import
 
 # delete local VM
-lo_delvm name:
+delvm name:
   #!/usr/bin/env bash
   set -euo pipefail
   virsh destroy --domain  {{name}}
