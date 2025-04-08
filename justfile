@@ -30,13 +30,14 @@ build-iso:
     -it \
     --privileged \
     --pull=newer \
+    --net=host \
     --security-opt label=type:unconfined_t \
     -v $(pwd)/.osbuild:/output \
+    -v $(pwd)/iso.toml:/config.toml:ro \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
-    -v $(pwd)/iso.toml:/config.toml \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --rootfs ext4 \
-    --type anaconda-iso \
+    --type iso \
     --target-arch amd64 \
     --local ghcr.io/aussielunix/mystation:latest
 
