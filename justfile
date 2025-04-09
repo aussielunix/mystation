@@ -20,6 +20,7 @@ build-qcow2:
     --type qcow2 \
     --rootfs ext4 \
     --target-arch amd64 \
+    --use-librepo=true \
     --local ghcr.io/aussielunix/mystation:latest
 
 #  build iso installer from local OCI image
