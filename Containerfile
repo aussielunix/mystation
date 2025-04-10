@@ -1,7 +1,5 @@
 FROM ghcr.io/ublue-os/silverblue-main:42
 
-LABEL containers.bootc 1
-
 WORKDIR /workdir
 
 COPY build_files .
@@ -19,4 +17,4 @@ WORKDIR /
 COPY system_files /
 
 RUN rm -rdf /workdir
-#RUN bootc container lint
+RUN bootc container lint
