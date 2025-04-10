@@ -10,6 +10,7 @@ dnf5 install -y \
   git \
   gnome-extensions-app \
   gnome-shell-extension-appindicator \
+  gnome-shell-extension-just-perfection \
   gnome-tweaks \
   iotop \
   jetbrains-mono-fonts-all \
@@ -39,10 +40,10 @@ dnf5 install -y \
   yubikey-manager-qt \
   zstd
 
-## Install things from Ublue's Staging COPR
+## Install things from Ublue's packages COPR
 #
-#dnf5 --enable-repo=copr:copr.fedorainfracloud.org:ublue-os:staging \
-#  install -y devpod
+#dnf5 --enablerepo copr:copr.fedorainfracloud.org:ublue-os:packages \
+#  install -y <foo>
 
 ## Install things from MS VSCode repo
 #
