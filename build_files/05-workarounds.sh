@@ -15,3 +15,4 @@ mkdir -m 0700 -p /var/home
 # https://github.com/containers/bootc/discussions/968#discussioncomment-11554946
 #rm -rf /var/run && ln -s /run /var/
 
+touch /var/home/,test
