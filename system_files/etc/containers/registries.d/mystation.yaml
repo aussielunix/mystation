@@ -1,0 +1,3 @@
+docker:
+  ghcr.io/aussielunix:
+    use-sigstore-attachments: true
