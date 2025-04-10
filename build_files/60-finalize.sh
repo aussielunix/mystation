@@ -17,5 +17,3 @@ systemctl mask mcelog.service
 systemctl enable bootc-fetch-apply-updates.timer
 #systemctl enable bootc-generic-growpart.service
 #systemctl set-default graphical.target
-
-#dnf5 -y copr disable ublue-os/staging

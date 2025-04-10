@@ -2,17 +2,9 @@
 
 set -ouex pipefail
 
-# example of blanketly ignoring some packages with dnf
-#
-#dnf config-manager --save \
-#    --setopt=exclude=PackageKit,PackageKit-command-not-found,rootfiles,firefox
-
-# EPEL
-#dnf config-manager --set-enabled crb
-#dnf -y install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm"
-
-# Ublue staging COPR
-#dnf5 -y copr enable ublue-os/staging
+# Add and instantly disable Ublue packages COPR
+#dnf5 -y copr enable ublue-os/packages
+#dnf5 -y copr disable ublue-os/packages
 
 # Setup Flathub
 #
