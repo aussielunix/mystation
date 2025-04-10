@@ -6,13 +6,4 @@ set -xeuo pipefail
 
 # https://github.com/ublue-os/image-template/issues/71
 mkdir -m 0700 -p /var/roothome
-#mkdir -p /var/mnt
-#mkdir -p /var/opt
-#mkdir -p /var/srv
 mkdir -m 0700 -p /var/home
-
-# https://gitlab.com/fedora/bootc/base-images/-/issues/28
-# https://github.com/containers/bootc/discussions/968#discussioncomment-11554946
-#rm -rf /var/run && ln -s /run /var/
-
-touch /var/home/,test
