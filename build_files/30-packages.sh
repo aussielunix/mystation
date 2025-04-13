@@ -16,24 +16,11 @@ dnf5 install -y \
   jetbrains-mono-fonts-all \
   just \
   langpacks-en \
-  libvirt \
   mc \
   nmap \
-  qemu-char-spice \
-  qemu-device-display-virtio-gpu \
-  qemu-device-display-virtio-vga \
-  qemu-device-usb-redirect \
-  qemu-img \
-  qemu-system-x86-core \
-  qemu-user-binfmt \
-  qemu-user-static \
-  qemu \
   strace \
   terminator \
   vim-enhanced \
-  virt-install \
-  virt-manager \
-  virt-viewer \
   webkit2gtk4.0 \
   wireguard-tools \
   wl-clipboard \
@@ -57,6 +44,3 @@ dnf5 -y --setopt=install_weak_deps=False install gcc
 ## Remove some packages (to be replaced with flatpaks)
 #
 #dnf5 remove -y firefox passim
-
-dnf5 clean all
-rm -rf /var/{cache,log} /var/lib/{dnf,rhsm}
