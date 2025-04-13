@@ -1,11 +1,12 @@
 # build new OCI image locally
 build:
-  sudo podman build -t ghcr.io/aussielunix/mystation:latest \
+  sudo podman build -t \
+    ghcr.io/aussielunix/mystation:latest \
     -f ./Containerfile .
 
 # build new qcow2 image from local OCI image
 build-qcow2:
-  mkdir -p .osbuild
+  mkdir -p output
   sudo podman run \
     --rm \
     -it \
@@ -13,7 +14,7 @@ build-qcow2:
     --pull=newer \
     --platform linux/amd64 \
     --security-opt label=type:unconfined_t \
-    -v $(pwd)/.osbuild:/output \
+    -v $(pwd)/output:/output \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
     -v $(pwd)/config.toml:/config.toml \
     quay.io/centos-bootc/bootc-image-builder:latest \
@@ -21,11 +22,11 @@ build-qcow2:
     --rootfs ext4 \
     --target-arch amd64 \
     --use-librepo=true \
-    --local ghcr.io/aussielunix/mystation:latest
+    ghcr.io/aussielunix/mystation:latest
 
 #  build iso installer from local OCI image
 build-iso:
-  mkdir -p .osbuild
+  mkdir -p output
   sudo podman run \
     --rm \
     -it \
@@ -33,24 +34,24 @@ build-iso:
     --pull=newer \
     --net=host \
     --security-opt label=type:unconfined_t \
-    -v $(pwd)/.osbuild:/output \
+    -v $(pwd)/output:/output \
     -v $(pwd)/iso.toml:/config.toml:ro \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --rootfs ext4 \
     --type iso \
     --target-arch amd64 \
-    --local ghcr.io/aussielunix/mystation:latest
+    ghcr.io/aussielunix/mystation:latest
 
 # create new libvirt template locally
 create_template name image_ver:
   #!/usr/bin/env bash
   set -euo pipefail
-  IMGSIZE=$(qemu-img info --output json .osbuild/qcow2/disk.qcow2 | jq -r .[\"virtual-size\"])
-  IMGFMT=$(qemu-img info --output json .osbuild/qcow2/disk.qcow2 | jq -r .format)
+  IMGSIZE=$(qemu-img info --output json output/qcow2/disk.qcow2 | jq -r .[\"virtual-size\"])
+  IMGFMT=$(qemu-img info --output json output/qcow2/disk.qcow2 | jq -r .format)
   virsh vol-create-as --pool default {{name}}-{{image_ver}} ${IMGSIZE} --format ${IMGFMT}
-  virsh vol-upload --pool default --vol {{name}}-{{image_ver}} .osbuild/qcow2/disk.qcow2
-  echo "{{name}}-{{image_ver}} from file .osbuild/qcow2/disk.qcow2 is ${IMGSIZE} bytes and is of type ${IMGFMT}"
+  virsh vol-upload --pool default --vol {{name}}-{{image_ver}} output/qcow2/disk.qcow2
+  echo "{{name}}-{{image_ver}} from file output/qcow2/disk.qcow2 is ${IMGSIZE} bytes and is of type ${IMGFMT}"
   virsh vol-list --pool default | grep {{name}}
 
 # create new VM locally
