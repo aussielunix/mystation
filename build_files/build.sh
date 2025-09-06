@@ -24,6 +24,7 @@ dnf_install(){
   gnome-shell-extension-appindicator \
   gnome-shell-extension-just-perfection \
   gnome-tweaks \
+  gum \
   iotop \
   jetbrains-mono-fonts-all \
   just \
