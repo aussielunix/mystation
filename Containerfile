@@ -9,13 +9,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    ./ctx/05-workarounds.sh && \
-    ./ctx/10-prep.sh && \
-    ./ctx/20-repos.sh && \
-    ./ctx/30-packages.sh && \
-    ./ctx/40-brew.sh && \
-    ./ctx/50-bootc.sh && \
-    ./ctx/60-finalize.sh
+    ./ctx/build.sh
 
 COPY system_files /
 
