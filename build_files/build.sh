@@ -30,6 +30,7 @@ dnf_install(){
   langpacks-en \
   mc \
   nmap \
+  powertop \
   strace \
   terminator \
   vim-enhanced \
