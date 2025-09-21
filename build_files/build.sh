@@ -38,8 +38,7 @@ dnf_install(){
   webkit2gtk4.0 \
   wireguard-tools \
   wl-clipboard \
-  yubikey-manager-qt \
-  zstd
+  yubikey-manager-qt
 }
 
 # DNF Remove some packages
