@@ -14,6 +14,13 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 COPY system_files /
 
+LABEL org.opencontainers.image.title="Aussielunix Workstation"
+LABEL org.opencontainers.image.authors="Mick Pollard <mick@aussielunix.io>"
+LABEL org.opencontainers.image.licenses="GPL-3.0-only"
+
+# Set global environment variables
+RUN echo "EDITOR=vim" >> /etc/environment
+
 RUN rm -rf /var && \
   mkdir /var && \
   bootc container lint
