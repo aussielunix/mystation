@@ -40,6 +40,7 @@ dnf5 --assumeyes install \
   podmansh \
   qemu-user-binfmt \
   qemu \
+  rng-tools \
   strace \
   terminator \
   vim-enhanced \
