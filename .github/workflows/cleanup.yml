@@ -16,5 +16,5 @@ jobs:
           token: ${{ secrets.REGISTRYCLEANUP }}
           image-names: "mystation"
           #tag-selection: "*"
-          cut-off: 6m
+          cut-off: 6months
           dry-run: true
