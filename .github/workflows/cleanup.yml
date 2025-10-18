@@ -17,4 +17,4 @@ jobs:
           image-names: "mystation"
           tag-selection: untagged
           cut-off: 7d
-          dry-run: true
+          dry-run: false
