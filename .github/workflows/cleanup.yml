@@ -1,5 +1,6 @@
 ---
 
+name: Cleanup Container Registry
 on:
   schedule:
     - cron: "0 0 1 * *"
