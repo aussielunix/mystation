@@ -17,4 +17,4 @@ jobs:
           image-names: "mystation"
           #tag-selection: "*"
           cut-off: 6months
-          dry-run: true
+          dry-run: false
