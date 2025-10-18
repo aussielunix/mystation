@@ -15,6 +15,6 @@ jobs:
           account: user
           token: ${{ secrets.REGISTRYCLEANUP }}
           image-names: "mystation"
-          tag-selection: "*"
+          #tag-selection: "*"
           cut-off: 6m
           dry-run: true
