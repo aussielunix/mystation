@@ -16,37 +16,105 @@ setup_flathub() {
 
 # DNF Install packages from upstream
 dnf_install(){
+  dnf5 clean all && \
+  dnf5 update && \
   dnf5 install -y \
+  adw-gtk3-theme \
+  adwaita-fonts-all \
+  atheros-firmware \
+  bash-color-prompt \
+  brcmfmac-firmware \
+  brightnessctl \
   cloud-utils-cloud-localds \
+  cryfs \
+  davfs2 \
+  ddcutil \
+  evtest \
+  fastfetch \
+  firewall-config \
+  flatpak \
   flatpak-spawn \
+  flatseal \
+  foo2zjs \
+  fuse-encfs \
+  gcc \
   git \
+  git-credential-libsecret \
+  glow \
   gnome-extensions-app \
   gnome-shell-extension-appindicator \
   gnome-shell-extension-just-perfection \
   gnome-tweaks \
   gum \
+  hplip \
+  ibus-mozc \
+  ifuse \
+  igt-gpu-tools \
+  input-remapper \
   iotop \
+  iwd \
+  iwlegacy-firmware \
+  iwlwifi-dvm-firmware \
+  iwlwifi-mvm-firmware \
   jetbrains-mono-fonts-all \
   just \
+  kernel-modules-extra \
+  krb5-workstation \
   langpacks-en \
+  libgda \
+  libgda-sqlite \
+  libratbag-ratbagd \
+  libsss_autofs \
+  libxcrypt-compat \
+  lm_sensors \
+  lshw \
+  make \
   mc \
+  mesa-libGLU \
+  mozc \
+  mt7xxx-firmware \
+  nautilus-gsconnect \
   nmap \
+  nxpwireless-firmware \
+  oddjob-mkhomedir \
+  openssh-askpass \
+  plymouth \
+  plymouth-system-theme \
   powertop \
+  pulseaudio-utils \
+  python3-pip \
+  python3-pygit2 \
+  rclone \
+  realtek-firmware \
+  restic \
+  setools-console \
   strace \
   terminator \
+  tiwilink-firmware \
+  usbip \
   vim-enhanced \
-  webkit2gtk4.0 \
+  waypipe \
   wireguard-tools \
   wl-clipboard \
-  yubikey-manager-qt
+  wpa_supplicant \
+  yubikey-manager-qt \
+  zenity \
+  zsh
 }
 
 # DNF Remove some packages
 # to be replaced with flatpaks)
 dnf_remove(){
   dnf5 remove -y \
+    passim \
+    fedora-bookmarks \
+    fedora-chromium-config \
+    fedora-chromium-config-gnome \
     firefox \
-    passim
+    firefox-langpacks \
+    gnome-software \
+    gnome-software-rpm-ostree \
+    gnome-terminal-nautilus
 }
 
 # Homebrew Install
@@ -77,14 +145,19 @@ finalise(){
 	systemctl disable ModemManager.service
 	systemctl disable cups.service
 	systemctl disable mcelog.service
-	systemctl mask ModemManager.service
 	systemctl mask cups.service
 	systemctl mask mcelog.service
 	systemctl enable bootc-fetch-apply-updates.timer
 	#Uncomment to allow disk to be extended - good for VMs etc
   #mkdir -p /usr/lib/systemd/system/local-fs.target.wants
 	#ln -s /usr/lib/systemd/system/bootc-generic-growpart.service /usr/lib/systemd/system/local-fs.target.wants/bootc-generic-growpart.service
-	#systemctl enable bootc-generic-growpart.service
+	systemctl enable bootc-generic-growpart.service
+}
+
+# workarounds
+workarounds() {
+  #ostree hates non-ascii filenames
+  find / -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
 }
 
 main() {
@@ -95,6 +168,7 @@ main() {
   setup_homebrew
   configure_bootc_things
   finalise
+  workarounds
 }
 
 main "$@"
