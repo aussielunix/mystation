@@ -157,7 +157,7 @@ finalise(){
 # workarounds
 workarounds() {
   #ostree hates non-ascii filenames
-  find / -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
+  find / -xdev -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
 }
 
 main() {
