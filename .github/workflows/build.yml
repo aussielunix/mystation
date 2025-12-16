@@ -63,7 +63,7 @@ jobs:
           # This generates all the tags for your image, you can add custom tags here too!
           # By default, it should generate "latest" and "latest.(date here)".
           tags: |
-            type=raw,value=42
+            type=raw,value=43
             type=raw,value=latest
             type=raw,value=latest.{{date 'YYYYMMDD'}}
             type=raw,value={{date 'YYYYMMDD'}}
