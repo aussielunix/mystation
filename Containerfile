@@ -1,12 +1,10 @@
-FROM quay.io/fedora/fedora-bootc:43 as builder
+# Allow build scripts to be referenced without being copied into the final image
+FROM scratch AS ctx
 COPY build_files /
-RUN /usr/libexec/bootc-base-imagectl build-rootfs --manifest=standard /target-rootfs
 
-# Create a new, empty image from scratch.
-FROM scratch
-# Copy the root file system built in the previous step into this image.
-COPY --from=builder /target-rootfs/ /
-RUN --mount=type=bind,from=builder,source=/,target=/ctx \
+FROM quay.io/fedora/fedora-bootc:43
+
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
@@ -25,5 +23,3 @@ RUN rm -rf /var && \
   mkdir /var && \
   bootc container lint
 
-STOPSIGNAL SIGRTMIN+3
-CMD ["/sbin/init"]
