@@ -13,6 +13,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 COPY system_files /
 
+LABEL containers.bootc 1
+LABEL ostree.bootable 1
+
 RUN rm -rf /var && \
   mkdir /var && \
   bootc container lint
