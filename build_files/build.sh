@@ -87,14 +87,20 @@ finalise(){
 	#systemctl enable bootc-generic-growpart.service
 }
 
+# workarounds
+workarounds() {
+  #ostree hates non-ascii filenames
+  find / -xdev -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
+}
+
 main() {
   create_missing_dirs
   setup_flathub
   dnf_install
   dnf_remove
   setup_homebrew
-  configure_bootc_things
   finalise
+  workarounds
 }
 
 main "$@"
