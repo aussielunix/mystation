@@ -3,7 +3,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM ghcr.io/ublue-os/silverblue-main:42
+FROM ghcr.io/ublue-os/silverblue-main:43
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
