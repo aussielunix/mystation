@@ -35,7 +35,6 @@ dnf_install(){
   strace \
   sysstat \
   terminator \
-  webkit2gtk4.1 \
   yubikey-manager-qt
 }
 
