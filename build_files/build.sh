@@ -18,7 +18,6 @@ setup_flathub() {
 dnf_install(){
   dnf5 install -y \
   cloud-utils-cloud-localds \
-  flatpak-spawn \
   git \
   gnome-extensions-app \
   gnome-shell-extension-appindicator \
@@ -27,17 +26,16 @@ dnf_install(){
   gum \
   iotop \
   jetbrains-mono-fonts-all \
-  just \
-  langpacks-en \
+  lm_sensors \
   mc \
   nmap \
+  openssh-askpass \
+  podman-machine \
   powertop \
   strace \
+  sysstat \
   terminator \
-  vim-enhanced \
-  webkit2gtk4.0 \
-  wireguard-tools \
-  wl-clipboard \
+  webkit2gtk4.1 \
   yubikey-manager-qt
 }
 
@@ -45,6 +43,9 @@ dnf_install(){
 # to be replaced with flatpaks)
 dnf_remove(){
   dnf5 remove -y \
+    fedora-bookmarks \
+    fedora-chromium-config \
+    fedora-chromium-config-gnome \
     firefox \
     passim
 }
