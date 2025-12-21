@@ -17,6 +17,8 @@ setup_flathub() {
 # DNF Install packages from upstream
 dnf_install(){
   dnf5 install -y \
+  bpftop \
+  bpftrace \
   cloud-utils-cloud-localds \
   git \
   gnome-extensions-app \
