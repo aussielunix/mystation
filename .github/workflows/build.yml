@@ -78,7 +78,7 @@ jobs:
         with:
           registry: ${{ steps.registry_case.outputs.lowercase }}
           image: ${{ steps.image_case.outputs.lowercase }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tag-names }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
 
