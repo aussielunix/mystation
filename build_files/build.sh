@@ -11,7 +11,7 @@ create_missing_dirs() {
 # Setup Flathub
 setup_flathub() {
   mkdir -p /etc/flatpak/remotes.d
-  curl -o /etc/flatpak/remotes.d/flathub.flatpakrepo  https://dl.flathub.org/repo/flathub.flatpakrepo
+  curl --silent -o /etc/flatpak/remotes.d/flathub.flatpakrepo  https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
 # DNF Install packages from upstream
