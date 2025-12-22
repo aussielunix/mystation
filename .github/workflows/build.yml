@@ -85,8 +85,8 @@ jobs:
             images+=" ${IMAGE_FULL}:${tag} "
           done
           images+=" ${IMAGE_FULL}@${DIGEST} "
-          echo ${images[@]}
-#          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${images}
+          echo ${images}
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${images}
         env:
           IMAGE_FULL: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
           TAGS: ${{ steps.meta.outputs.tag-names }}
