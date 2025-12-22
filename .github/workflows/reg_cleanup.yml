@@ -1,10 +1,10 @@
 ---
 
+# Runs every Monday at 03:00 UTC
 name: Cleanup Registry Images
 on:
-  workflow_dispatch: # Allows manual triggering from the GitHub UI
+  workflow_dispatch:
   schedule:
-    # Runs every Monday at 03:00 UTC
     - cron: '0 3 * * MON'
 jobs:
   cleanup:
@@ -15,11 +15,5 @@ jobs:
       - name: Delete old container images
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          # The GitHub token with 'packages: write' permission
-          owner: ${{ github.repository_owner }}
-          name: 'mystation'
-          keep-tags: 'latest, edge, 42, 43, 44'
-          keep-versions: 30
-          delete-untagged: true
           dry-run: true
 
