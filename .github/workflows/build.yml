@@ -79,11 +79,15 @@ jobs:
         run: |
           images=""
           for tag in ${TAGS}; do
-            images+="${tag}@{DIGEST} "
+            echo "T = ${tag}"
+            images+=" ${IMAGE_FULL}:${tag} "
           done
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${images}
+          images+=" ${IMAGE_FULL}@{DIGEST} "
+          echo ${images}
+#          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${images}
         env:
-          TAGS: ${{ steps.meta.outputs.tags }}
+          IMAGE_FULL: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
+          TAGS: ${{ steps.meta.outputs.tags-list }}
           DIGEST: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
