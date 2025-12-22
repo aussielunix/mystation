@@ -77,19 +77,9 @@ jobs:
       - name: Sign container image
         if: github.event_name != 'pull_request'
         shell: bash
-        run: |
-          set -x
-          images=""
-          for tag in ${TAGS}; do
-            echo "T = ${tag}"
-            images+=" ${IMAGE_FULL}:${tag} "
-          done
-          images+=" ${IMAGE_FULL}@${DIGEST} "
-          echo ${images}
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${images}
+        run: cosign sign -y --key env://COSIGN_PRIVATE_KEY ${IMAGE_FULL}@${DIGEST}
         env:
           IMAGE_FULL: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
-          TAGS: ${{ steps.meta.outputs.tag-names }}
           DIGEST: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
