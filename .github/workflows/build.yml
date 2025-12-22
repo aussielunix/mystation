@@ -77,7 +77,9 @@ jobs:
       - name: Sign container image
         if: github.event_name != 'pull_request'
         shell: bash
-        run: cosign sign -y --key env://COSIGN_PRIVATE_KEY ${IMAGE_FULL}@${DIGEST}
+        run: |
+          echo "::notice::Signing ${IMAGE_FULL}@${DIGEST}"
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${IMAGE_FULL}@${DIGEST}
         env:
           IMAGE_FULL: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}
           DIGEST: ${{ steps.push.outputs.digest }}
