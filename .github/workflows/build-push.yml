@@ -1,16 +1,18 @@
 ---
 
-name: Release Custom Stable Image
+name: Build & Push Custom Image
 env:
   IMAGE_NAME: "${{ github.event.repository.name }}"  # the name of the image produced by this build, matches repo names
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 on:
   push:
-    tags: ['v*.*']      # Trigger semver on tagged releases
+    branches: ['main']
+    tags: ['v*.*']
     paths-ignore:
       - '**/README.md'
+  pull_request:
 jobs:
-  docker:
+  build_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,6 +36,7 @@ jobs:
         with:
           images: aussielunix/mystation
           tags: |
+            type=edge,enable=true,prefix=,suffix=,branch=main
             type=raw,value={{date 'YYYYMMDDHH'}}
             type=match,pattern=v(\d+)\.\d+,group=1
           labels: |
