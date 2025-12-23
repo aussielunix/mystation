@@ -1,13 +1,12 @@
 ---
 
-name: CI - Build Custom Image
+name: CI - Build Custom edge Image
 env:
   IMAGE_NAME: "${{ github.event.repository.name }}"  # the name of the image produced by this build, matches repo names
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 on:
   push:
     branches: ['main']
-    tags: ['v*.*']      # Trigger semver on tagged releases
     paths-ignore:
       - '**/README.md'
   pull_request:
@@ -38,11 +37,9 @@ jobs:
           tags: |
             type=edge,enable=true,prefix=,suffix=,branch=main
             type=raw,value={{date 'YYYYMMDD'}}
-            type=match,pattern=v(\d+)\.\d+,group=1
           labels: |
             org.opencontainers.image.vendor=${{ github.repository_owner }}
             org.opencontainers.image.documentation=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/refs/heads/main/README.md
-
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@v2
@@ -53,7 +50,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tag-names }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: false
-
       - name: Push To GHCR
         uses: redhat-actions/push-to-registry@v2
         if: github.event_name != 'pull_request'
@@ -64,15 +60,9 @@ jobs:
           tags: ${{ steps.meta.outputs.tag-names }}
           username: ${{ github.actor }}
           password: ${{ github.token }}
-
-      # This section is optional and only needs to be enabled if you plan on distributing
-      # your project for others to consume. You will need to create a public and private key
-      # using Cosign and save the private key as a repository secret in Github for this workflow
-      # to consume. For more details, review the image signing section of the README.
       - name: Install Cosign
         uses: sigstore/cosign-installer@d7d6bc7722e3daa8354c50bcb52f4837da5e9b6a # v3.8.1
         if: github.event_name != 'pull_request'
-
       - name: Sign container image
         if: github.event_name != 'pull_request'
         shell: bash
