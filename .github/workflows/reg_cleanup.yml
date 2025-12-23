@@ -15,6 +15,7 @@ jobs:
       - name: Delete old container images
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          exclude-tags: '40,41,42,43,44,latest,edge'
+          exclude-tags: '43,44,latest,edge'
           older-than: 90 days
           delete-untagged: true
+          dry-run: true
