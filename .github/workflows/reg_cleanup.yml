@@ -20,5 +20,4 @@ jobs:
           image-names: "mystation"
           cut-off: 90 days
           image-tags: "!43 !44 !latest !edge"
-          dry-run: true
           tag-selection: both
