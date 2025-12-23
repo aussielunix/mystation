@@ -51,6 +51,7 @@ dnf_install(){
   qemu-system-x86-core \
   qemu-user-binfmt \
   qemu-user-static \
+  screen \
   strace \
   sysstat \
   terminator \
