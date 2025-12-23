@@ -13,9 +13,12 @@ jobs:
       group: cleanup-registry
     steps:
       - name: Delete old container images
-        uses: dataaxiom/ghcr-cleanup-action@v1
+        uses: snok/container-retention-policy@v3.0.0
         with:
-          exclude-tags: '43,44,latest,edge'
-          older-than: 90 days
-          delete-untagged: true
+          account: user
+          token: ${{ secrets.GITHUB_TOKEN }}
+          image-names: "mystation"
+          cut-off: 90 days
+          image-tags: "!43 !44 !latest !edge"
           dry-run: true
+          tag-selection: both
