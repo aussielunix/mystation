@@ -34,7 +34,7 @@ jobs:
         with:
           images: aussielunix/mystation
           tags: |
-            type=raw,value={{date 'YYYYMMDD'}}
+            type=raw,value={{date 'YYYYMMDDHH'}}
             type=match,pattern=v(\d+)\.\d+,group=1
           labels: |
             org.opencontainers.image.vendor=${{ github.repository_owner }}

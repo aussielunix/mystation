@@ -36,7 +36,7 @@ jobs:
           images: aussielunix/mystation
           tags: |
             type=edge,enable=true,prefix=,suffix=,branch=main
-            type=raw,value={{date 'YYYYMMDD'}}
+            type=raw,value={{date 'YYYYMMDDHH'}}
           labels: |
             org.opencontainers.image.vendor=${{ github.repository_owner }}
             org.opencontainers.image.documentation=https://raw.githubusercontent.com/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/refs/heads/main/README.md
