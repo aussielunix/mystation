@@ -18,4 +18,4 @@ jobs:
           exclude-tags: '40,41,42,43,44,latest,edge'
           older-than: 90 days
           delete-untagged: true
-          dry-run: true
+          dry-run: false
