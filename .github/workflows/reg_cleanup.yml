@@ -16,6 +16,6 @@ jobs:
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
           exclude-tags: latest, edge, 42, 43, 44
-          keep-versions: 30
+          older-than: 90 days
           delete-untagged: true
           dry-run: true
