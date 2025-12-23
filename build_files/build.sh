@@ -16,12 +16,12 @@ setup_flathub() {
 
 # Setup custom COPRs
 setup_coprs() {
-  dnf5 copr enable @osbuild/image-builder
+  dnf5 --assumeyes copr enable @osbuild/image-builder
 }
 
 # DNF Install packages from upstream
 dnf_install(){
-  dnf5 install -y \
+  dnf5 --assumeyes install \
   bpftop \
   bpftrace \
   cloud-utils-cloud-localds \
@@ -62,7 +62,7 @@ dnf_install(){
 # DNF Remove some packages
 # to be replaced with flatpaks)
 dnf_remove(){
-  dnf5 remove -y \
+  dnf5 --assumeyes remove \
     fedora-bookmarks \
     fedora-chromium-config \
     fedora-chromium-config-gnome \
@@ -95,7 +95,7 @@ configure_bootc_things(){
 
 # Disable custom COPRs
 disable_coprs() {
-  dnf5 copr disable @osbuild/image-builder
+  dnf5 --assumeyes copr disable @osbuild/image-builder
 }
 
 # Finalise before baking
