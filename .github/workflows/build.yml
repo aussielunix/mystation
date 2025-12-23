@@ -26,7 +26,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Maximize build space
+        uses: ublue-os/remove-unwanted-software@v7
+        with:
+          remove-codeql: true
       - name: Extract metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5.10.0
