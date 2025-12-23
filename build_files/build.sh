@@ -14,6 +14,11 @@ setup_flathub() {
   curl --silent -o /etc/flatpak/remotes.d/flathub.flatpakrepo  https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
+# Setup custom COPRs
+setup_coprs() {
+  dnf5 copr enable @osbuild/image-builder
+}
+
 # DNF Install packages from upstream
 dnf_install(){
   dnf5 install -y \
@@ -26,17 +31,31 @@ dnf_install(){
   gnome-shell-extension-just-perfection \
   gnome-tweaks \
   gum \
+  image-builder \
   iotop \
   jetbrains-mono-fonts-all \
+  libvirt \
+  libvirt-nss \
   lm_sensors \
   mc \
   nmap \
   openssh-askpass \
   podman-machine \
   powertop \
+  qemu \
+  qemu-char-spice \
+  qemu-device-display-virtio-gpu \
+  qemu-device-display-virtio-vga \
+  qemu-device-usb-redirect \
+  qemu-img \
+  qemu-system-x86-core \
+  qemu-user-binfmt \
+  qemu-user-static \
   strace \
   sysstat \
   terminator \
+  virt-manager \
+  virt-viewer \
   yubikey-manager-qt
 }
 
@@ -74,6 +93,11 @@ configure_bootc_things(){
   /usr/lib/systemd/system/bootc-fetch-apply-updates.service
 }
 
+# Disable custom COPRs
+disable_coprs() {
+  dnf5 copr disable @osbuild/image-builder
+}
+
 # Finalise before baking
 finalise(){
 	systemctl disable ModemManager.service
@@ -98,9 +122,11 @@ workarounds() {
 main() {
   create_missing_dirs
   setup_flathub
+  setup_coprs
   dnf_install
   dnf_remove
   setup_homebrew
+  disable_coprs
   finalise
   workarounds
 }
