@@ -5,7 +5,7 @@ lang en_US
 timezone --utc Australia/Sydney
 timesource --ntp-pool au.pool.ntp.org
 
-#Root password
+user --groups=wheel --name=lunix --password=$y$j9T$6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx --iscrypted --gecos="Mick Pollard"
 rootpw --lock
 
 %post
@@ -17,13 +17,13 @@ sed -i 's|container-image-reference=.*|container-image-reference=ostree-image-si
 
 [customizations.installer.modules]
 enable = [
-    "org.fedoraproject.Anaconda.Modules.Users",
     "org.fedoraproject.Anaconda.Modules.Payloads",
     "org.fedoraproject.Anaconda.Modules.Storage",
     "org.fedoraproject.Anaconda.Modules.Runtime"
 ]
 
 disable = [
+    "org.fedoraproject.Anaconda.Modules.Users",
     "org.fedoraproject.Anaconda.Modules.Localization",
     "org.fedoraproject.Anaconda.Modules.Security",
     "org.fedoraproject.Anaconda.Modules.Network",
