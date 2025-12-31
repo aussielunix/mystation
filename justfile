@@ -1,84 +1,96 @@
-# build new OCI image locally
-build:
-  sudo podman build -t \
-    ghcr.io/aussielunix/mystation:latest \
+# podman build new OCI image locally
+build branch="dev":
+  sudo podman build \
+    --cap-add=all \
+    --security-opt=label=type:container_runtime_t \
+    -t ghcr.io/aussielunix/mystation:{{branch}} \
     -f ./Containerfile .
 
 # build new qcow2 image from local OCI image
-build-qcow2:
-  mkdir -p output
-  sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --platform linux/amd64 \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/output:/output \
-    -v /var/lib/containers/storage:/var/lib/containers/storage \
-    -v $(pwd)/config.toml:/config.toml \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type qcow2 \
-    --rootfs ext4 \
-    --target-arch amd64 \
-    --use-librepo=true \
-    ghcr.io/aussielunix/mystation:latest
+build-qcow2 branch="dev":
+  sudo image-builder build \
+    --output-dir ./output \
+    --bootc-default-fs ext4 \
+    --blueprint ./config.toml \
+    --bootc-ref ghcr.io/aussielunix/mystation:{{branch}} \
+    --output-name bootc-fedora-qcow2-x86_64.qcow2 \
+    qcow2
+  sudo chown $USER:$USER output/bootc-fedora-qcow2-x86_64.qcow2
 
-#  build iso installer from local OCI image
-build-iso:
-  mkdir -p output
+
+# Buildimage, build qcow2 & Create VM with GUI from latest qcow2
+build_test: build build-qcow2
+  #!/usr/bin/env bash
+  set -euo pipefail
+  qemu-system-x86_64 -name testvm \
+    -enable-kvm \
+    -m 4096 \
+    -cpu host \
+    -smp 4 \
+    -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=mynet0 \
+    -vga virtio \
+    -device virtio-mouse \
+    -device virtio-keyboard \
+    -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
+    -hda output/bootc-fedora-qcow2-x86_64.qcow2
+
+# build iso installer from local OCI image
+build_iso branch="dev":
   sudo podman run \
     --rm \
     -it \
     --privileged \
     --pull=newer \
-    --net=host \
     --security-opt label=type:unconfined_t \
     -v $(pwd)/output:/output \
     -v $(pwd)/iso.toml:/config.toml:ro \
     -v /var/lib/containers/storage:/var/lib/containers/storage \
-    quay.io/centos-bootc/bootc-image-builder:latest \
+    ghcr.io/osbuild/bootc-image-builder:latest \
+    build \
     --rootfs ext4 \
     --type iso \
     --target-arch amd64 \
-    ghcr.io/aussielunix/mystation:latest
+    --use-librepo=True \
+    ghcr.io/aussielunix/mystation:{{branch}}
 
-# create new libvirt template locally
-create_template name image_ver:
+# Create VM with GUI from latest iso
+build_vm_iso:
+  qemu-img create -f qcow2 output/bootc-fedora-qcow2-x86_64.qcow2 30G
+  qemu-system-x86_64 -name testvm \
+    -enable-kvm \
+    -m 4096 \
+    -cpu host \
+    -smp 4 \
+    -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=mynet0 \
+    -vga virtio \
+    -device virtio-mouse \
+    -device virtio-keyboard \
+    -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
+    -drive file=output/bootc-fedora-qcow2-x86_64.qcow2,format=qcow2,media=disk \
+    -boot d \
+    -cdrom output/bootiso/install.iso
+
+# Create VM with GUI from latest qcow2
+build_vm:
+  qemu-system-x86_64 -name testvm \
+    -enable-kvm \
+    -m 4096 \
+    -cpu host \
+    -smp 4 \
+    -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
+    -device virtio-net-pci,netdev=mynet0 \
+    -vga virtio \
+    -device virtio-mouse \
+    -device virtio-keyboard \
+    -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
+    -hda output/bootc-fedora-qcow2-x86_64.qcow2
+
+# cleanup
+cleanup:
   #!/usr/bin/env bash
   set -euo pipefail
-  IMGSIZE=$(qemu-img info --output json output/qcow2/disk.qcow2 | jq -r .[\"virtual-size\"])
-  IMGFMT=$(qemu-img info --output json output/qcow2/disk.qcow2 | jq -r .format)
-  virsh vol-create-as --pool default {{name}}-{{image_ver}} ${IMGSIZE} --format ${IMGFMT}
-  virsh vol-upload --pool default --vol {{name}}-{{image_ver}} output/qcow2/disk.qcow2
-  echo "{{name}}-{{image_ver}} from file output/qcow2/disk.qcow2 is ${IMGSIZE} bytes and is of type ${IMGFMT}"
-  virsh vol-list --pool default | grep {{name}}
+  sudo rm -rf output
+  mkdir output
 
-# create new VM locally
-newvm name template:
-  #!/usr/bin/env bash
-  set -euo pipefail
-  #clone template disk
-  virsh vol-clone --pool default --vol {{template}} --newname {{name}}
-  virsh vol-resize --pool default --vol {{name}} --capacity 50G
-  #create ci-iso
-  cat ci.tmpl | sed "s/VMNAME/{{name}}/g" > /tmp/$$.ci
-  echo "instance-id: $(uuidgen || echo i-abcdefg)" > /tmp/$$.metadata
-  cloud-localds {{name}}.seed.iso /tmp/$$.ci /tmp/$$.metadata
-  IMGSIZE=$(qemu-img info --output json {{name}}.seed.iso | jq -r .[\"virtual-size\"])
-  IMGFMT=$(qemu-img info --output json {{name}}.seed.iso | jq -r .format)
-  virsh vol-create-as default {{name}}.seed.iso ${IMGSIZE} --format ${IMGFMT}
-  virsh vol-upload --pool default {{name}}.seed.iso {{name}}.seed.iso
-  #cleanup temp files
-  rm /tmp/$$.ci /tmp/$$.metadata {{name}}.seed.iso
-  #create vm
-  virt-install --cpu host-passthrough --name {{name}} --vcpus 2 --memory 4096 --disk vol=default/{{name}}.seed.iso,device=cdrom --disk vol=default/{{name}},device=disk,size=20,bus=virtio,sparse=false --os-variant fedora40 --virt-type kvm --graphics spice --network network=default,model=virtio --autoconsole text --import
-
-# delete local VM
-delvm name:
-  #!/usr/bin/env bash
-  set -euo pipefail
-  virsh destroy --domain  {{name}}
-  virsh undefine --domain {{name}}
-  virsh vol-delete --pool default --vol {{name}}
-  virsh vol-delete --pool default --vol {{name}}.seed.iso
