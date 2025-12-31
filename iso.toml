@@ -11,7 +11,7 @@ rootpw --lock
 %post
 #bootc switch --mutate-in-place --enforce-container-sigpolicy --transport registry ghcr.io/aussielunix/mystation:edge
 # DELETEME: This is a nasty hack. Remove whenever http://github.com/bootc-dev/bootc/commit/f7b41cc1ebfc823e9de848b55773faddc59ecf88 makes it into a release
-sed -i 's|container-image-reference=.*|container-image-reference=ostree-image-signed:docker://$imageref:$imagetag|' /ostree/deploy/default/deploy/*.origin
+sed -i 's|container-image-reference=.*|container-image-reference=ostree-image-signed:docker://ghcr.io/aussielunix/mystation:edge|' /ostree/deploy/default/deploy/*.origin
 %end
 """
 
