@@ -128,7 +128,6 @@ main() {
   setup_coprs
   dnf_install
   dnf_remove
-  setup_homebrew
   disable_coprs
   finalise
   workarounds

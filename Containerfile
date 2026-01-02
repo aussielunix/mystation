@@ -13,6 +13,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 
 COPY system_files /
 
+# Copy Homebrew files from the brew image
+COPY --from=registry.gitlab.com/aussielunix/linux-ng/rnd/homebrew:edge /system_files /
+
 LABEL containers.bootc 1
 LABEL ostree.bootable 1
 
