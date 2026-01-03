@@ -93,4 +93,3 @@ cleanup:
   set -euo pipefail
   sudo rm -rf output
   mkdir output
-
