@@ -7,7 +7,7 @@ build branch="dev":
     -f ./Containerfile .
 
 # build new qcow2 image from local OCI image
-build-qcow2 branch="dev":
+build_qcow2 branch="dev":
   sudo image-builder build \
     --output-dir ./output \
     --bootc-default-fs ext4 \
@@ -19,7 +19,7 @@ build-qcow2 branch="dev":
 
 
 # Buildimage, build qcow2 & Create VM with GUI from latest qcow2
-build_test: build build-qcow2
+build_test: build build_qcow2
   #!/usr/bin/env bash
   set -euo pipefail
   qemu-system-x86_64 -name testvm \
