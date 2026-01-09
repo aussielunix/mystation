@@ -1,0 +1,19 @@
+###########################
+# Replaced with Flatpacks #
+###########################
+
+firefox
+
+###########
+# Removed #
+###########
+
+fedora-bookmarks
+fedora-chromium-config
+fedora-chromium-config-gnome
+
+###########
+# Spyware #
+###########
+
+passim

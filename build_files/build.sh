@@ -21,69 +21,15 @@ setup_coprs() {
 
 # DNF Install packages from upstream
 dnf_install(){
-  dnf5 --assumeyes install \
-  bpftop \
-  bpftrace \
-  cloud-utils-cloud-localds \
-  git \
-  gnome-extensions-app \
-  gnome-shell-extension-appindicator \
-  gnome-shell-extension-just-perfection \
-  gnome-tweaks \
-  gum \
-  image-builder \
-  iotop \
-  jetbrains-mono-fonts-all \
-  libvirt \
-  libvirt-nss \
-  lm_sensors \
-  mc \
-  nmap \
-  openssh-askpass \
-  podman-machine \
-  powertop \
-  qemu \
-  qemu-char-spice \
-  qemu-device-display-virtio-gpu \
-  qemu-device-display-virtio-vga \
-  qemu-device-usb-redirect \
-  qemu-img \
-  qemu-system-x86-core \
-  qemu-user-binfmt \
-  qemu-user-static \
-  screen \
-  strace \
-  sysstat \
-  terminator \
-  virt-manager \
-  virt-viewer \
-  yubikey-manager-qt
+  grep -vE '^#' ctx/packages.install | xargs dnf5 --assumeyes install --allowerasing
 }
 
 # DNF Remove some packages
 # to be replaced with flatpaks)
 dnf_remove(){
-  dnf5 --assumeyes remove \
-    fedora-bookmarks \
-    fedora-chromium-config \
-    fedora-chromium-config-gnome \
-    firefox \
-    passim
-}
-
-# Homebrew Install
-setup_homebrew(){
-  touch /.dockerenv
-  curl --retry 3 -Lo /tmp/brew-install https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
-  chmod +x /tmp/brew-install
-  /tmp/brew-install
-
-  tar --zstd -cvf /usr/share/homebrew.tar.zst /home/linuxbrew
-  rm -f /.dockerenv
-
-  # Clean up brew artifacts on the image.
-  rm -rf /home/linuxbrew /root/.cache
-  rm -r /var/home
+  grep -vE '^#' ctx/packages.remove | xargs dnf5 --assumeyes remove
+  dnf5 --assumeyes autoremove
+  dnf5 clean all
 }
 
 # Tune bootc related things
