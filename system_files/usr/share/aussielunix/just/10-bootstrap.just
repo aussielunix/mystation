@@ -6,7 +6,7 @@ bootstrap:
   brew install yadm
   cd $HOME
   mkdir -p $HOME/bin
-  yadm clone --bootstrap --branch dev https://github.com/aussielunix/dotfiles.git
+  yadm clone --bootstrap --branch main https://github.com/aussielunix/dotfiles.git
   yadm checkout $HOME
   echo "Logout and back in and then run 'yadm decrypt'"
   echo "::endgroup::"
