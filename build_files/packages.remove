@@ -11,6 +11,10 @@ firefox
 fedora-bookmarks
 fedora-chromium-config
 fedora-chromium-config-gnome
+gnome-shell-extension-launch-new-instance
+gnome-shell-extension-apps-menu
+gnome-shell-extension-appindicator
+gnome-shell-extension-just-perfection
 
 ###########
 # Spyware #
