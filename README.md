@@ -1,6 +1,9 @@
 # mystation [![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
 
 This is my continually improved cloud native (Atomic) Desktop OS.  
+Using bootc and other cloud native tools and workflows I can easily improve my
+desktop over time.
+
 It is based on the fantastic [template](https://github.com/ublue-os/image-template) from the [Universal Blue](https://universal-blue.org/) team.
 
 ## Firstboot Runsheet
