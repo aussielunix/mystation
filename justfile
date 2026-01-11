@@ -27,10 +27,11 @@ build_test: build build_qcow2
     -m 4096 \
     -cpu host \
     -smp 4 \
+    -usb \
     -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
     -device virtio-net-pci,netdev=mynet0 \
     -vga virtio \
-    -device virtio-mouse \
+    -device usb-tablet \
     -device virtio-keyboard \
     -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
     -hda output/bootc-fedora-qcow2-x86_64.qcow2
@@ -62,10 +63,11 @@ build_vm_iso:
     -m 4096 \
     -cpu host \
     -smp 4 \
+    -usb \
     -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
     -device virtio-net-pci,netdev=mynet0 \
     -vga virtio \
-    -device virtio-mouse \
+    -device usb-tablet \
     -device virtio-keyboard \
     -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
     -drive file=output/bootc-fedora-qcow2-x86_64.qcow2,format=qcow2,media=disk \
@@ -79,10 +81,11 @@ build_vm:
     -m 4096 \
     -cpu host \
     -smp 4 \
+    -usb \
     -netdev user,id=mynet0,hostfwd=tcp::2222-:22 \
     -device virtio-net-pci,netdev=mynet0 \
     -vga virtio \
-    -device virtio-mouse \
+    -device usb-tablet \
     -device virtio-keyboard \
     -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
     -hda output/bootc-fedora-qcow2-x86_64.qcow2
