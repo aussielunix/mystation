@@ -6,6 +6,9 @@ set -xeuo pipefail
 create_missing_dirs() {
   mkdir -m 0700 -p /var/roothome
   mkdir -m 0700 -p /var/home
+  mkdir -m 0700 -p /var/opt
+  mkdir -m 0700 -p /var/srv
+  mkdir -m 0700 -p /var/mnt
 }
 
 # Setup Flathub
@@ -32,17 +35,17 @@ dnf_remove(){
   dnf5 clean all
 }
 
+# Disable custom COPRs
+disable_coprs() {
+  dnf5 --assumeyes copr disable @osbuild/image-builder
+}
+
 # Tune bootc related things
 configure_bootc_things(){
   #sed -i '/^\[composefs\]/,/^\[/ s/enabled = no/enabled = yes/' /usr/lib/ostree/prepare-root.conf
 
   sed -i 's,ExecStart=/usr/bin/bootc update --apply --quiet,ExecStart=/usr/bin/bootc update --quiet,g' \
   /usr/lib/systemd/system/bootc-fetch-apply-updates.service
-}
-
-# Disable custom COPRs
-disable_coprs() {
-  dnf5 --assumeyes copr disable @osbuild/image-builder
 }
 
 # Finalise before baking
@@ -66,6 +69,14 @@ workarounds() {
   find / -xdev -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
   #https://github.com/osbuild/bootc-image-builder/issues/1171
   mkdir -p /usr/lib/bootupd/updates && cp -r /usr/lib/efi/*/*/* /usr/lib/bootupd/updates
+  # pcp - Performance Co-Pilot doesn't make use of tmpfiles.d yet
+  rm -rf /var/lib/pcp
+  # iscsi software does not make use of tmpfiles.d yet
+  rm -rf /var/lib/iscsi
+  # livbirt software does not make use of tmpfiles.d yet
+  rm -rf /var/lib/libvirt
+  # swtpm software does not make use of tmpfiles.d yet
+  rm -rf /var/lib/swtpm-localca
 }
 
 main() {
