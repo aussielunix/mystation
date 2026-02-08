@@ -3,6 +3,7 @@ build branch="dev":
   sudo podman build \
     --cap-add=all \
     --security-opt=label=type:container_runtime_t \
+    --pull=newer \
     -t ghcr.io/aussielunix/mystation:{{branch}} \
     -f ./Containerfile .
 
