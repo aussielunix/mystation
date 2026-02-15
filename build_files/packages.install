@@ -21,6 +21,7 @@ yubikey-manager-qt
 #############
 # Dev Tools #
 #############
+bootc-man
 git
 gum
 jetbrains-mono-fonts-all

@@ -20,6 +20,7 @@ setup_flathub() {
 # Setup custom COPRs
 setup_coprs() {
   dnf5 --assumeyes copr enable @osbuild/image-builder
+  dnf5 --assumeyes copr enable tnk4on/bootc-man
 }
 
 # DNF Install packages from upstream
@@ -38,6 +39,7 @@ dnf_remove(){
 # Disable custom COPRs
 disable_coprs() {
   dnf5 --assumeyes copr disable @osbuild/image-builder
+  dnf5 --assumeyes copr disable tnk4on/bootc-man
 }
 
 # Tune bootc related things
