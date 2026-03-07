@@ -69,8 +69,6 @@ finalise(){
 workarounds() {
   #ostree hates non-ascii filenames
   find / -xdev -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
-  #https://github.com/osbuild/bootc-image-builder/issues/1171
-  mkdir -p /usr/lib/bootupd/updates && cp -r /usr/lib/efi/*/*/* /usr/lib/bootupd/updates
   # pcp - Performance Co-Pilot doesn't make use of tmpfiles.d yet
   rm -rf /var/lib/pcp
   # iscsi software does not make use of tmpfiles.d yet
