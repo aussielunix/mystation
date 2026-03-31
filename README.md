@@ -1,4 +1,4 @@
-# mystation [![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build.yml)
+# mystation [![build-mystation](https://github.com/aussielunix/mystation/actions/workflows/build-push.yml/badge.svg)](https://github.com/aussielunix/mystation/actions/workflows/build-push.yml)
 
 This is my continually improved cloud native (Atomic) Desktop OS.  
 Using bootc and other cloud native tools and workflows I can easily improve my
