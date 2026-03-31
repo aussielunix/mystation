@@ -77,6 +77,8 @@ workarounds() {
   rm -rf /var/lib/libvirt
   # swtpm software does not make use of tmpfiles.d yet
   rm -rf /var/lib/swtpm-localca
+  rm -rf /var/lib/dnf
+  rm -rf /var/lib/rpm-state
 }
 
 main() {

@@ -27,6 +27,4 @@ RUN --mount=type=cache,dst=/var/cache \
 LABEL containers.bootc 1
 LABEL ostree.bootable 1
 
-RUN rm -rf /var/lib/dnf && \
-  rm -rf /var/lib/rpm-state && \
-  bootc container lint --fatal-warnings
+RUN bootc container lint --fatal-warnings --no-truncate
