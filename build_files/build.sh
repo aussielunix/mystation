@@ -25,7 +25,7 @@ setup_coprs() {
 
 # DNF Install packages from upstream
 dnf_install(){
-  grep -vE '^#' ctx/packages.install | xargs dnf5 --assumeyes install --allowerasing
+  grep -vE '^#' ctx/packages.install | xargs dnf5 --setopt=install_weak_deps=False --assumeyes install --allowerasing
 }
 
 # DNF Remove some packages
@@ -79,6 +79,8 @@ workarounds() {
   rm -rf /var/lib/swtpm-localca
   rm -rf /var/lib/dnf
   rm -rf /var/lib/rpm-state
+  # firebird is bad
+  rm -rf /var/lib/firebird
 }
 
 main() {
