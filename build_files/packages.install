@@ -29,6 +29,11 @@ jetbrains-mono-fonts-all
 image-builder
 podman-machine
 
+###########
+# General #
+###########
+libreoffice
+
 ##################
 # Virtualisation #
 ##################
