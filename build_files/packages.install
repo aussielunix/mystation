@@ -21,7 +21,7 @@ yubikey-manager-qt
 #############
 # Dev Tools #
 #############
-bootc-man
+#bootc-man
 code
 git
 gum

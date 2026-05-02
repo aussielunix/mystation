@@ -84,10 +84,10 @@ workarounds() {
 main() {
   create_missing_dirs
   setup_flathub
-  setup_coprs
+  #setup_coprs
   dnf_install
   dnf_remove
-  disable_coprs
+  #disable_coprs
   finalise
   workarounds
 }
