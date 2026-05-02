@@ -1,7 +1,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM ghcr.io/ublue-os/silverblue-main:43
+FROM ghcr.io/ublue-os/silverblue-main:44
 
 COPY system_files /
 
