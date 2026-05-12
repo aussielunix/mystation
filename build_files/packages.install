@@ -23,11 +23,30 @@ yubikey-manager-qt
 #############
 #bootc-man
 code
-git
 gum
 jetbrains-mono-fonts-all
 image-builder
 podman-machine
+
+# Core compiler and build tools
+gcc
+gcc-c++
+make
+binutils
+
+# Essential build utilities
+patch
+m4
+autoconf
+automake
+libtool
+pkgconf-pkg-config
+
+# Required Homebrew system utilities
+procps-ng
+curl
+file
+git
 
 ###########
 # General #
