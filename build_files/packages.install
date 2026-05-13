@@ -26,6 +26,7 @@ code
 gum
 jetbrains-mono-fonts-all
 image-builder
+patchelf
 podman-machine
 
 # Core compiler and build tools
