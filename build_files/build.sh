@@ -82,7 +82,7 @@ workarounds() {
 }
 
 main() {
-  create_missing_dirs
+  #create_missing_dirs
   setup_flathub
   #setup_coprs
   dnf_install
