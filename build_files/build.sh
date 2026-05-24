@@ -52,17 +52,17 @@ configure_bootc_things(){
 
 # Finalise before baking
 finalise(){
-	systemctl disable ModemManager.service
-	systemctl disable cups.service
-	systemctl disable mcelog.service
-	systemctl mask ModemManager.service
-	systemctl mask cups.service
-	systemctl mask mcelog.service
-	systemctl enable bootc-fetch-apply-updates.timer
-	#Uncomment to allow disk to be extended - good for VMs etc
+  systemctl disable ModemManager.service
+  systemctl disable cups.service
+  systemctl disable mcelog.service
+  systemctl mask ModemManager.service
+  systemctl mask cups.service
+  systemctl mask mcelog.service
+  systemctl enable bootc-fetch-apply-updates.timer
+  #Uncomment to allow disk to be extended - good for VMs etc
   #mkdir -p /usr/lib/systemd/system/local-fs.target.wants
-	#ln -s /usr/lib/systemd/system/bootc-generic-growpart.service /usr/lib/systemd/system/local-fs.target.wants/bootc-generic-growpart.service
-	#systemctl enable bootc-generic-growpart.service
+  #ln -s /usr/lib/systemd/system/bootc-generic-growpart.service /usr/lib/systemd/system/local-fs.target.wants/bootc-generic-growpart.service
+  #systemctl enable bootc-generic-growpart.service
 }
 
 # workarounds
