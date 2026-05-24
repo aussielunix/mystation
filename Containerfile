@@ -13,7 +13,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     ./ctx/build.sh
 
 # Copy Homebrew files from the homebrew image
-COPY --from=registry.gitlab.com/aussielunix/linux-ng/rnd/homebrew:edge /system_files /
+COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
