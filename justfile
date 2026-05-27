@@ -18,7 +18,6 @@ build_qcow2 branch="dev":
     qcow2
   sudo chown $USER:$USER output/bootc-fedora-qcow2-x86_64.qcow2
 
-
 # Buildimage, build qcow2 & Create VM with GUI from latest qcow2
 build_test: build build_qcow2
   #!/usr/bin/env bash
@@ -76,7 +75,7 @@ build_vm_iso:
     -cdrom output/bootiso/install.iso
 
 # Create VM with GUI from latest qcow2
-build_vm:
+build_vm qcow="output/qcow2/disk.qcow2":
   qemu-system-x86_64 -name testvm \
     -enable-kvm \
     -m 4096 \
@@ -89,7 +88,7 @@ build_vm:
     -device usb-tablet \
     -device virtio-keyboard \
     -display gtk,show-menubar=on,show-cursor=on,grab-on-hover=on \
-    -hda output/bootc-fedora-qcow2-x86_64.qcow2
+    -hda {{qcow}}
 
 # cleanup
 cleanup:
