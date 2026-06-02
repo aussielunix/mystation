@@ -17,10 +17,13 @@ setup_flathub() {
   curl --silent -o /etc/flatpak/remotes.d/flathub.flatpakrepo  https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
-# Setup custom COPRs
+# Setup custom COPRs and other REPOs
 setup_coprs() {
-  dnf5 --assumeyes copr enable @osbuild/image-builder
-  dnf5 --assumeyes copr enable tnk4on/bootc-man
+  #dnf5 install --assumeyes libdnf5-plugin-appstream
+  dnf5 install --assumeyes dnf5-plugins
+  #dnf5 --assumeyes copr enable @osbuild/image-builder
+  #dnf5 --assumeyes copr enable tnk4on/bootc-man
+  dnf5 makecache --refresh
 }
 
 # DNF Install packages from upstream
@@ -36,10 +39,11 @@ dnf_remove(){
   dnf5 clean all
 }
 
-# Disable custom COPRs
+# Disable custom COPRs and other REPOs
 disable_coprs() {
-  dnf5 --assumeyes copr disable @osbuild/image-builder
-  dnf5 --assumeyes copr disable tnk4on/bootc-man
+  #dnf5 --assumeyes copr disable @osbuild/image-builder
+  #dnf5 --assumeyes copr disable tnk4on/bootc-man
+  dnf5 makecache --refresh
 }
 
 # Tune bootc related things
@@ -52,13 +56,10 @@ configure_bootc_things(){
 
 # Finalise before baking
 finalise(){
-  systemctl disable ModemManager.service
   systemctl disable cups.service
-  systemctl disable mcelog.service
-  systemctl mask ModemManager.service
   systemctl mask cups.service
-  systemctl mask mcelog.service
   systemctl enable bootc-fetch-apply-updates.timer
+  systemctl enable rasdaemon
   #Uncomment to allow disk to be extended - good for VMs etc
   #mkdir -p /usr/lib/systemd/system/local-fs.target.wants
   #ln -s /usr/lib/systemd/system/bootc-generic-growpart.service /usr/lib/systemd/system/local-fs.target.wants/bootc-generic-growpart.service
@@ -79,6 +80,18 @@ workarounds() {
   rm -rf /var/lib/rpm-state
   # firebird is bad
   rm -rf /var/lib/firebird
+  # cups
+  rm -rf /var/lib/color
+  rm -rf /var/spool/cups
+  # vim
+  rm -f /var/roothome/.viminfo
+  # systemd things
+  rm -f /var/lib/systemd/random-seed
+  rm -f /var/lib/systemd/catalog/database
+  # podman
+  rm -rf /var/lib/containers
+  # tpm2
+  rm -rf /var/lib/tpm2-tss
 }
 
 main() {
