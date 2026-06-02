@@ -1,8 +1,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-#FROM ghcr.io/ublue-os/silverblue-main:44
-FROM quay.io/fedora/fedora-bootc:44
+FROM ghcr.io/ublue-os/silverblue-main:44
 
 COPY system_files /
 
