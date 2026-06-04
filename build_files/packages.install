@@ -46,6 +46,7 @@ libtool
 libva-utils
 libvirt
 libvirt-nss
+libxcb
 lm_sensors
 lshw
 m4
