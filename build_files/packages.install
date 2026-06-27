@@ -75,6 +75,7 @@ qemu-system-x86-core
 qemu-user-binfmt
 rasdaemon
 screen
+setroubleshoot-server
 smartmontools
 solaar-udev
 strace
